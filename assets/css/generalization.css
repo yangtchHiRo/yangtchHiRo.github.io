@@ -1,0 +1,22 @@
+/* Full-width supplied generalization comparisons. */
+#transfer .generalization-options { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+#transfer .generalization-options button { white-space:normal; text-align:left; line-height:1.5; padding:10px 16px; }
+#transfer .generalization-options small { display:block; font-size:10px; opacity:.8; }
+#transfer .generalization-heading { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:18px 22px; background:#f7faf7; }
+#transfer .generalization-heading h3 { margin-top:6px; font-size:19px; line-height:1.4; font-weight:600; }
+#transfer .generalization-methods { display:grid; grid-template-columns:repeat(var(--method-count,4),minmax(0,1fr)); gap:0; background:#fff; border-top:1px solid var(--line); }
+#transfer .generalization-methods span { padding:10px 4px; text-align:center; font-size:13px; font-weight:600; border-bottom:3px solid #bec8c6; }
+#transfer .generalization-methods .is-aim { color:var(--accent); border-bottom-color:var(--accent); background:#edf5ef; }
+#transfer .generalization-media { aspect-ratio:auto; min-height:0; background:#f1f4f2; }
+#transfer .generalization-media > video { display:block; width:100%; height:auto; max-height:none; object-fit:contain; }
+#transfer .result-caption { align-items:flex-start; }
+#transfer #generalization-pair { overflow-wrap:anywhere; }
+#transfer .generalization-download { flex-shrink:0; font-size:12px; border-bottom:1px solid currentColor; color:var(--accent); }
+#transfer .generalization-error { padding:22px; font-size:13px; }
+@media (max-width:680px) {
+  #transfer .generalization-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  #transfer .generalization-options button { padding:9px 10px; font-size:11px; }
+  #transfer .generalization-heading { flex-direction:column; align-items:flex-start; padding:14px; gap:10px; }
+  #transfer .generalization-heading h3 { font-size:16px; }
+  #transfer .generalization-methods span { font-size:10px; padding:8px 2px; }
+}

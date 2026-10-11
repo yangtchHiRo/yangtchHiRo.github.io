@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AIM — Adaptive Interaction Modeling for Real-to-Sim Soft-Body Simulation. A research project on local interactions, long-horizon prediction, and cross-action transfer.">
+  <meta name="theme-color" content="#164f45">
+  <meta property="og:title" content="AIM · Adaptive Interaction Modeling">
+  <meta property="og:description" content="From local interactions to deformable motion.">
+  <meta property="og:type" content="website">
+  <title>AIM · Adaptive Interaction Modeling</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/generalization.css">
+  <script src="assets/js/content.js" defer></script>
+  <script src="assets/js/generalization-media.js" defer></script>
+  <script src="assets/js/generalization.js" defer></script>
+  <script src="assets/js/curated-media.js" defer></script>
+  <script src="assets/js/phystwin-scenes.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
+<link rel="stylesheet" href="assets/css/curated-media.css">
+<link rel="stylesheet" href="assets/css/paper-layout.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="#top" aria-label="AIM home"><img src="assets/images/favicon.svg" width="28" height="28" alt="">AIM<span> / research</span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">Menu <span>+</span></button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <a href="#method">Method</a><a href="#local">Local dynamics</a><a href="#long-horizon">Rollouts</a><a href="#transfer">Generalization</a>
+      <a class="nav-resource" href="#resources">Resources <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="hero wrap" id="top" aria-labelledby="project-title">
+    <div class="eyebrow hero-eyebrow"><span class="status-dot"></span>REAL-TO-SIM · DEFORMABLE DYNAMICS</div>
+    <h1 id="project-title"><span class="title-brand">AIM</span><span class="title-main">Adaptive Interaction Modeling</span><span class="title-sub">for Real-to-Sim Soft-Body Simulation</span></h1>
+    <p class="hero-description">From local interactions to deformable motion.</p>
+    <div id="authors" class="authors"></div>
+    <p id="affiliations" class="affiliations"></p>
+    <div class="project-links" id="project-links" aria-label="Project resources"></div>
+    <figure class="hero-figure paper-challenges" aria-labelledby="challenges-heading">
+  <div class="figure-heading"><span id="challenges-heading">THREE CONNECTED CHALLENGES</span><a href="assets/images/challenges.png" target="_blank" rel="noopener">View full size ↗</a></div>
+  <a class="paper-figure-link" href="assets/images/challenges.png" target="_blank" rel="noopener" aria-label="Open the challenges figure at full size">
+    <img src="assets/images/challenges.png" width="2688" height="1428" alt="Challenges in deformable dynamics: inaccurate local interactions lead to accumulated rollout error, while changes in geometry and contact introduce an additional adaptation challenge." decoding="async" fetchpriority="high">
+  </a>
+  <figcaption class="paper-figure-caption"><strong>Local accuracy. Temporal stability. Adaptation.</strong><p>Errors in local interactions accumulate over time, in both familiar and novel conditions. Changes in geometry and contact introduce a further challenge: adapting how interactions are modeled.</p></figcaption>
+</figure>
+    <div class="paper-challenge-points" id="challenge-notes" aria-label="Three challenges in deformable dynamics">
+  <a href="#local"><span class="paper-point-tag">LOCAL INTERACTIONS</span><h3>Proximity is not dependency.</h3><p>Folding brings distant regions together; stretching separates regions whose motion remains coupled.</p></a>
+  <a href="#long-horizon"><span class="paper-point-tag">ERROR ACCUMULATION</span><h3>Local errors become drift.</h3><p>Inaccurate responses feed into subsequent predictions, changing shape and motion over rollout.</p></a>
+  <a href="#transfer"><span class="paper-point-tag">CHANGING CONDITIONS</span><h3>Interactions must adapt.</h3><p>New geometries and contact patterns change how manipulation propagates through the object.</p></a>
+</div>
+  </section>
+
+  <section class="abstract-section" aria-labelledby="abstract-title">
+    <div class="wrap abstract-layout"><div><div class="eyebrow">THE IDEA</div><h2 id="abstract-title">Model the interaction.<br>Follow the deformation.</h2></div>
+      <div><p id="abstract-text"></p><p class="abstract-footnote">A particle-based view of dynamics, connected to rendered observations.</p></div>
+    </div>
+  </section>
+
+<section class="method-section paper-method" id="method" aria-labelledby="method-title">
+  <div class="wrap chapter">
+    <div class="chapter-intro">
+      <div><div class="eyebrow">01 / METHOD</div><h2 id="method-title">Adaptive interactions.<br>Coordinated deformation.</h2></div>
+      <p>AIM models how manipulation propagates through deformable objects. From particle motion and manipulator states, it models interaction-dependent information exchange to predict the next state and roll motion forward.</p>
+    </div>
+    <figure class="paper-framework" aria-labelledby="framework-caption">
+      <div class="figure-heading"><span>ADAPTIVE INTERACTION MODELING</span><a href="assets/images/framework.png" target="_blank" rel="noopener">View full size ↗</a></div>
+      <a class="paper-figure-link" href="assets/images/framework.png" target="_blank" rel="noopener" aria-label="Open the AIM architecture figure at full size">
+        <img src="assets/images/framework.png" width="5696" height="2136" alt="AIM architecture for modeling particle interactions and predicting deformable motion under manipulation." loading="lazy" decoding="async">
+      </a>
+      <figcaption class="paper-figure-caption" id="framework-caption"><strong>From observed motion to predicted deformation.</strong><p>The framework connects particle interactions, the propagation of manipulation effects, and autoregressive state prediction.</p></figcaption>
+    </figure>
+    <div class="paper-method-points">
+      <article><span>01</span><h3>Model particle relations</h3><p>Represent deformation dependencies beyond spatial proximity alone.</p></article>
+      <article><span>02</span><h3>Propagate interaction effects</h3><p>Connect local manipulation responses with coordinated motion across the object.</p></article>
+      <article><span>03</span><h3>Predict evolving states</h3><p>Use the predicted particle state to advance the dynamics through successive steps.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="wrap chapter" id="local" aria-labelledby="local-title">
+    <div class="chapter-intro"><div><div class="eyebrow">02 / IN-DOMAIN DYNAMICS</div><h2 id="local-title">Where motion begins.</h2></div><p>Explore six selected PhysTwin scenes. Switch between rendered motion and tracked trajectories; all four comparison columns share the same timeline.</p></div>
+    <div class="viewer-toolbar local-toolbar"><div class="segmented scene-grid" id="local-scenes" aria-label="PhysTwin scene"></div></div>
+    <figure class="result-figure">
+      <div class="segmented comparison-modes" id="local-modes" aria-label="Visualization mode"></div>
+      <div id="local-media" class="media-host comparison-media"></div>
+      <figcaption class="result-caption"><div><strong id="local-name"></strong><p id="local-caption"></p></div><span id="local-protocol" class="protocol-badge"></span></figcaption>
+    </figure>
+    <div class="reading-note"><span class="note-symbol">↳</span><p>Look at the <strong>contact region</strong> first, then the <strong>relative shape</strong> away from it. Overall translation alone does not describe the deformation.</p></div>
+  </section>
+
+  <section class="tinted" id="long-horizon" aria-labelledby="long-title">
+    <div class="wrap chapter">
+
+      <div class="chapter-intro">
+        <div>
+          <div class="eyebrow">03 / SELECTED ROLLOUTS</div>
+          <h2 id="long-title">Long-horizon dynamics.</h2>
+        </div>
+        <p>Rollout comparisons on the PGND dataset across rope, bread, sloth, and paperbag.</p>
+      </div>
+
+      <div class="long-grid">
+        <div class="long-selector">
+          <div
+            class="vertical-options"
+            id="long-scenes"
+            aria-label="Object category">
+          </div>
+
+          <div class="protocol-note">
+            <span class="eyebrow">ROLLOUT PROTOCOL</span>
+            <p id="long-protocol"></p>
+          </div>
+        </div>
+
+        <figure class="result-figure">
+          <div class="figure-heading"><span id="long-label">SELECTED ROLLOUTS</span></div>
+
+          <div id="long-media" class="media-host long-media"></div>
+
+          <figcaption class="result-caption">
+            <div>
+              <strong id="long-name"></strong>
+              <p id="long-caption"></p>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div id="rollout-chart" class="optional-figure" hidden></div>
+    </div>
+  </section>
+
+  <section class="wrap chapter" id="transfer" aria-labelledby="transfer-title">
+  <div class="chapter-intro">
+    <div>
+      <div class="eyebrow">04 / GENERALIZATION</div>
+      <h2 id="transfer-title">Beyond the training interaction.</h2>
+    </div>
+    <p>Explore selected transfers across actions and object instances, alongside a shared-model example. Each video compares predictions with the observed target motion.</p>
+  </div>
+
+  <div id="generalization-scenes" class="segmented generalization-options" aria-label="Generalization example"></div>
+
+  <figure class="result-figure generalization-figure">
+    <div class="generalization-heading">
+      <div><span id="generalization-category" class="eyebrow"></span><h3 id="generalization-title"></h3></div>
+      <span id="generalization-segment" class="protocol-badge"></span>
+    </div>
+    <div id="generalization-methods" class="generalization-methods" aria-label="Methods from left to right"></div>
+    <div id="generalization-media" class="media-host generalization-media"></div>
+    <figcaption class="result-caption">
+      <div><strong id="generalization-pair"></strong><p id="generalization-caption"></p></div>
+      <a id="generalization-download" class="generalization-download" download>Download video</a>
+    </figcaption>
+  </figure>
+  <div id="object-transfer" class="optional-figure" hidden></div>
+</section>
+
+<section class="wrap chapter quantitative" id="quantitative" hidden aria-labelledby="quantitative-title"><div class="chapter-intro"><div><div class="eyebrow">EVALUATION</div><h2 id="quantitative-title">Measured on the same task.</h2></div><p id="quantitative-caption"></p></div><div class="table-scroll"><table><thead id="results-head"></thead><tbody id="results-body"></tbody></table></div></section>
+
+  <section class="wrap resources-section" id="resources" aria-labelledby="resources-title"><div><div class="eyebrow">EXPLORE THE PROJECT</div><h2 id="resources-title">Paper, code & citation.</h2><p id="resources-note">Project resources will be linked when available.</p><div class="project-links" id="footer-links"></div></div><div class="citation-box"><div class="citation-heading"><span>BibTeX</span><button id="copy-citation" type="button" disabled>Copy citation</button></div><pre id="citation">Citation will be added with the manuscript.</pre><span id="copy-status" class="sr-only" role="status"></span></div></section>
+</main>
+<footer class="site-footer"><div class="wrap footer-inner"><a class="brand" href="#top">AIM<span> / Adaptive Interaction Modeling</span></a><p>Research project · Real-to-sim soft-body dynamics</p><a href="#top">Back to top ↑</a></div></footer>
+
+<noscript><div class="no-script">Enable JavaScript to switch scenes and view the media gallery.</div></noscript>
+</body>
+</html>

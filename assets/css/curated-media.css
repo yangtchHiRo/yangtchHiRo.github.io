@@ -1,0 +1,13 @@
+/* Scoped to the two curated chapters; loaded after existing styles. */
+#local .scene-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#long-horizon .long-grid { grid-template-columns: 1fr; gap: 16px; }
+#long-horizon .long-selector { display: block; }
+#long-horizon .vertical-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+#long-horizon .vertical-options button { width: 100%; padding: 12px; }
+#long-horizon .protocol-note { margin-top: 12px; padding: 12px 0 0; }
+#long-horizon .long-media, #local .comparison-media { aspect-ratio: auto; min-height: 0; }
+#long-horizon .long-media > video, #local .comparison-media > video { display: block; position: static; width: 100%; height: auto; max-height: none; object-fit: contain; }
+@media (max-width: 680px) {
+  #local .scene-grid, #long-horizon .vertical-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #long-horizon .figure-heading { flex-wrap: wrap; gap: 5px; }
+}
